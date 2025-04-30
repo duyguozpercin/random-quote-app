@@ -1,4 +1,4 @@
-
+import './styles.css'
 
 export const QuoteCArd = ({quote, author}) => {
   return (
