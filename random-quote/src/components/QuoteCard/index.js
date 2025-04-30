@@ -1,10 +1,11 @@
-import './styles.css'
+import './styles.css';
 
-export const QuoteCard = ({quote, author}) => {
+export const QuoteCard = ({ quote, author, likeCount }) => {
   return (
     <section className="QuoteCard">
-      <p> {quote} </p>
-      <p>{author}</p>
+      <p className="quote-text">{quote}</p>
+      <p className="quote-author">— {author}</p>
+      <p className="like-count">💖 Likes: {likeCount}</p>
     </section>
   );
 };

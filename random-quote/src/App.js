@@ -1,29 +1,41 @@
-
 import { quotes as initialQuotes } from './quotes.js';
 import './App.css';
 import { QuoteCard } from './components/QuoteCard/index.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  // const [state, setState] = useState(initialState)
-  const [quotes, setQuotes] = useState(initialQuotes);
+  const savedQuotes = JSON.parse(localStorage.getItem('quotes'));
+  const [quotes, setQuotes] = useState(savedQuotes || initialQuotes);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    localStorage.setItem('quotes', JSON.stringify(quotes));
+  }, [quotes]);
 
-  function handleNextQuoteClick () {
+  function handleNextQuoteClick() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    // THIS IS NOT CORRECT: currentIndex = randomIndex;
     setCurrentIndex(randomIndex);
+  }
 
+  function handleLikeClick() {
+    const updatedQuotes = [...quotes];
+    updatedQuotes[currentIndex].likeCount += 1;
+    setQuotes(updatedQuotes);
   }
 
   return (
-    // JSX
     <div className="App">
-      <QuoteCard quote={quotes[currentIndex].quote} author={quotes[currentIndex].author} />
-
-      <button onClick={handleNextQuoteClick}>Next quote</button>
+      <QuoteCard
+        quote={quotes[currentIndex].quote}
+        author={quotes[currentIndex].author}
+        likeCount={quotes[currentIndex].likeCount}
+      />
+      <div>
+        <button onClick={handleNextQuoteClick}>Next quote</button>
+        <button onClick={handleLikeClick}>Like</button>
+      </div>
     </div>
   );
 }
+
 export default App;

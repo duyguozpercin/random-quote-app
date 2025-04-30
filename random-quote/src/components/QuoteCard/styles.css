@@ -1,8 +1,28 @@
 .QuoteCard {
-  background-color: #fafafa;
+  background-color: white;
   padding: 40px;
-  border-radius: 5px;
-  font-size: 18px;
+  border-radius: 12px;
+  font-size: 20px;
   max-width: 600px;
   margin: 20px auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #333;
+}
+
+.quote-text {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.quote-author {
+  font-weight: bold;
+  color: #555;
+}
+
+.like-count {
+  margin-top: 15px;
+  color: #ff69b4; /* pembe tonu */
+  font-size: 14px; /* daha küçük */
+  font-weight: 500;
 }
