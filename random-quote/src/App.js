@@ -32,7 +32,7 @@ function App() {
       />
       <div>
         <button onClick={handleNextQuoteClick}>Next quote</button>
-        <button onClick={handleLikeClick}>Like</button>
+        <button onClick={handleLikeClick}>Like 💖</button>
       </div>
     </div>
   );
