@@ -1,6 +1,6 @@
 import './styles.css'
 
-export const QuoteCArd = ({quote, author}) => {
+export const QuoteCard = ({quote, author}) => {
   return (
     <section className="QuoteCard">
       <p> {quote} </p>
