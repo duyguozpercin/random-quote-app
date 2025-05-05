@@ -2,6 +2,7 @@ import { quotes as initialQuotes } from './quotes.js';
 import './App.css';
 import { QuoteCard } from './components/QuoteCard/index.js';
 import { useState, useEffect } from 'react';
+import { Button } from './components/Button/index.jsx';
 
 function App() {
   const savedQuotes = JSON.parse(localStorage.getItem('quotes'));
@@ -31,8 +32,9 @@ function App() {
         likeCount={quotes[currentIndex].likeCount}
       />
       <div>
-        <button onClick={handleNextQuoteClick}>Next quote</button>
-        <button onClick={handleLikeClick}>Like 💖</button>
+        <Button label="Next Quote" handleOnclick={handleNextQuoteClick} />
+        <Button label="Like 💖" handleOnclick={handleLikeClick} />
+        
       </div>
     </div>
   );
