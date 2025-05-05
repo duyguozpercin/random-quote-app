@@ -2,13 +2,18 @@ import './App.css';
 import { useState, useEffect} from 'react';
 import { ProfilePage } from './pages/ProfilePage/index.jsx';
 import { MainPage } from './pages/MainPage/index.jsx';
+import { useQuotesContext } from './QuotesContextProvider';
+
+
+
+
 const pages = {
   home: 'Home',
   profile: 'Profile',
 };
 
 function App() {
-  const savedQuotes = JSON.parse(localStorage.getItem('quotes'));
+  const quotes = useQuotesContext();
   const [currentPage, setCurrentPage] = useState(pages.home);
 
   useEffect(() => {

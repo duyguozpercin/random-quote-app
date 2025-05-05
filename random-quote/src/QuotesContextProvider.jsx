@@ -1,11 +1,17 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import { quotes as initialQuotes } from './quotes.js';
 
 export const QuotesContext = createContext(undefined);
 export const QuotesDispatchContext = createContext(undefined);
 
 export const QuotesContextProvider = ({children}) => {
-  const [quotes, setQuotes] = useState(initialQuotes);
+  const savedQuotes = JSON.parse(localStorage.getItem('quotes'));
+  const [quotes, setQuotes] = useState(savedQuotes || initialQuotes);
+
+  useEffect(() => {
+    localStorage.setItem('quotes', JSON.stringify(quotes));
+  }, [quotes]);
+
   return (
     <QuotesContext value={quotes}>
       <QuotesDispatchContext value={setQuotes}>

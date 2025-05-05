@@ -4,14 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QuotesContextProvider } from './QuotesContextProvider.jsx';
+import { QuoteIndexContextProvider } from './QuoteIndexContextProvider.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QuotesContextProvider>
-    <App />
+      <QuoteIndexContextProvider>
+        <App />
+      </QuoteIndexContextProvider>
     </QuotesContextProvider>
-  </React.StrictMode>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function

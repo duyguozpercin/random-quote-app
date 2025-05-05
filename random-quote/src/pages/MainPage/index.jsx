@@ -11,6 +11,7 @@ export const MainPage = () => {
   const quotes = useQuotesContext();
   const currentIndex = useQuoteIndexContext();
   const dispatchQuoteIndex = useQuoteIndexDispatchContext();
+
   
   function handleNextQuoteClick() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
