@@ -1,14 +1,35 @@
 import { QuoteCard } from '../../components/QuoteCard'
 import { Button } from '../../components/Button'
+import { useQuotesContext } from "../../QuotesContextProvider";
+import {
+  useQuoteIndexContext,
+  useQuoteIndexDispatchContext,
+} from "../../QuoteIndexContextProvider";
 
-export const MainPage =({quote, author, likeCount, handleNextQuoteClick, handleLikeClick}) => {
+
+export const MainPage = () => {
+  const quotes = useQuotesContext();
+  const currentIndex = useQuoteIndexContext();
+  const dispatchQuoteIndex = useQuoteIndexDispatchContext();
+  
+  function handleNextQuoteClick() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    dispatchQuoteIndex(randomIndex);
+  }
+
+  function handleLikeClick() {
+    const updatedQuotes = [...quotes];
+    updatedQuotes[currentIndex].likeCount += 1;
+    
+  }
+
   return (
     <main>
     <QuoteCard
     
-        quote={quote}
-        author={author}
-        likeCount={likeCount}
+        quote={quotes[currentIndex].quote}
+        author={quotes[currentIndex].author}
+        likeCount={quotes[currentIndex].likeCount}
       />
       <div>
         <Button label="Next Quote" handleOnclick={handleNextQuoteClick} />
