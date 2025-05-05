@@ -5,10 +5,13 @@ import {
   useQuoteIndexContext,
   useQuoteIndexDispatchContext,
 } from "../../QuoteIndexContextProvider";
+import { useQuotesDispatchContext } from "../../QuotesContextProvider";
+
 
 
 export const MainPage = () => {
   const quotes = useQuotesContext();
+  const setQuotes = useQuotesDispatchContext();
   const currentIndex = useQuoteIndexContext();
   const dispatchQuoteIndex = useQuoteIndexDispatchContext();
 
@@ -21,6 +24,7 @@ export const MainPage = () => {
   function handleLikeClick() {
     const updatedQuotes = [...quotes];
     updatedQuotes[currentIndex].likeCount += 1;
+    setQuotes(updatedQuotes); 
     
   }
 
