@@ -1,13 +1,19 @@
 import { quotes as initialQuotes } from './quotes.js';
 import './App.css';
-import { QuoteCard } from './components/QuoteCard/index.js';
 import { useState, useEffect } from 'react';
-import { Button } from './components/Button/index.jsx';
+import { ProfilePage } from './pages/ProfilePage/index.jsx';
+import { MainPage } from './pages/MainPage/index.jsx';
+
+const pages = {
+  home: 'Home',
+  profile: 'Profile',
+};
 
 function App() {
   const savedQuotes = JSON.parse(localStorage.getItem('quotes'));
   const [quotes, setQuotes] = useState(savedQuotes || initialQuotes);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(pages.home);
 
   useEffect(() => {
     localStorage.setItem('quotes', JSON.stringify(quotes));
@@ -24,18 +30,28 @@ function App() {
     setQuotes(updatedQuotes);
   }
 
+
   return (
     <div className="App">
-      <QuoteCard
-        quote={quotes[currentIndex].quote}
+      <nav>
+        <ul>
+          <li>
+            <button onClick={() => setCurrentPage(pages.home)}>{pages.home}</button>
+          </li>
+          <li>
+            <button onClick={() => setCurrentPage(pages.profile)}>{pages.profile}</button>
+          </li>
+        </ul>
+      </nav>
+      {currentPage === pages.home ? <MainPage quote={quotes[currentIndex].quote}
         author={quotes[currentIndex].author}
         likeCount={quotes[currentIndex].likeCount}
-      />
-      <div>
-        <Button label="Next Quote" handleOnclick={handleNextQuoteClick} />
-        <Button label="Like 💖" handleOnclick={handleLikeClick} />
-        
-      </div>
+        handleNextQuoteClick={handleNextQuoteClick}
+        handleLikeClick={handleLikeClick} /> : <ProfilePage />}
+
+
+
+
     </div>
   );
 }
