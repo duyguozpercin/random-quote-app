@@ -27,10 +27,10 @@ function App() {
       <nav>
         <ul>
           <li>
-            <button onClick={() => setCurrentPage(pages.home)}>{pages.home}</button>
+            <button className="HeaderBtn" onClick={() => setCurrentPage(pages.home)}>{pages.home}</button>
           </li>
           <li>
-            <button onClick={() => setCurrentPage(pages.profile)}>{pages.profile}</button>
+            <button className="HeaderBtn" onClick={() => setCurrentPage(pages.profile)}>{pages.profile}</button>
           </li>
         </ul>
       </nav>
