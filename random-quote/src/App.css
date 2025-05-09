@@ -1,12 +1,17 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 ul {
   display: flex;
   justify-content: center;
   
 }
+
+li {
+  list-style: none;
+}
+
 .HeaderBtn {
   
   padding: 0;
@@ -22,6 +27,3 @@ ul {
   font-size: 16px;
 }
 
-li {
-  list-style: none;
-}
