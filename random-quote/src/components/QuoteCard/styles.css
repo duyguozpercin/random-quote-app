@@ -1,4 +1,4 @@
-.QuoteCard {
+/* .QuoteCard {
   background-color: white;
   padding: 40px;
   border-radius: 12px;
@@ -7,20 +7,20 @@
   margin: 20px auto;
   text-align: center;
   color: #333;
-}
+} */
 
-.quote-text {
+/* .quote-text {
   font-style: italic;
   margin-bottom: 20px;
-}
+} */
 
-.quote-author {
+/* .quote-author {
   color: #555;
-}
+} */
 
-.like-count {
+/* .like-count {
   margin-top: 15px;
   color: #ff69b4;
   font-size: 12px; 
   font-weight: 500;
-}
+} */
