@@ -1,4 +1,4 @@
-import './styles.css';
+
 
 export const QuoteCard = ({ quote, author, likeCount }) => {
   return (

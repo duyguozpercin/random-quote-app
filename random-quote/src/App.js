@@ -1,4 +1,4 @@
-import './App.css';
+
 import { useState, useEffect} from 'react';
 import { ProfilePage } from './pages/ProfilePage/index.jsx';
 import { MainPage } from './pages/MainPage/index.jsx';
