@@ -27,10 +27,10 @@ function App() {
       <nav className='max-w-full bg-white text-sm text-center'>
         <ul className='flex gap-5 justify-end max-w-7xl'>
           <li>
-            <button className="HeaderBtn" onClick={() => setCurrentPage(pages.home)}>{pages.home}</button>
+            <button className="py-3 px-2.5 m-2.5 text-base" onClick={() => setCurrentPage(pages.home)}>{pages.home}</button>
           </li>
           <li>
-            <button className="HeaderBtn" onClick={() => setCurrentPage(pages.profile)}>{pages.profile}</button>
+            <button className="py-3 px-2.5 m-2.5 text-base" onClick={() => setCurrentPage(pages.profile)}>{pages.profile}</button>
           </li>
         </ul>
       </nav>
