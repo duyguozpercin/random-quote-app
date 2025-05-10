@@ -24,8 +24,8 @@ function App() {
 
   return (
     <div>
-      <nav>
-        <ul>
+      <nav className='max-w-full bg-white text-sm text-center'>
+        <ul className='flex gap-5 justify-end max-w-7xl'>
           <li>
             <button className="HeaderBtn" onClick={() => setCurrentPage(pages.home)}>{pages.home}</button>
           </li>
