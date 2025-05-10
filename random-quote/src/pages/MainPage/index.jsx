@@ -36,7 +36,7 @@ export const MainPage = () => {
         author={quotes[currentIndex].author}
         likeCount={quotes[currentIndex].likeCount}
       />
-      <div>
+      <div className="flex justify-center gap-1">
         <Button label="Next Quote" handleOnclick={handleNextQuoteClick} />
         <Button label="Like 💖" handleOnclick={handleLikeClick} />
         
