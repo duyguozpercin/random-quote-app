@@ -10,10 +10,10 @@ export const ProfilePage = () => {
     <main>
       <h1 className="text-lg font-bold my-5 mx-auto text-gray-600 text-center">Profile Page</h1>
       <div className="user-info">
-        <p className="text-sm my-5 mx-auto text-gray-600 text-center">Welcome to your profile! Here's a list of the quotes you've liked so far 💖</p>
+        <p className="text-base my-5 mx-auto text-gray-600 text-center">Welcome to your profile! Here's a list of the quotes you've liked so far 💖</p>
       </div>
 
-      <h2 className="text-sm text-slate-700 my-5 mx-auto text-gray-600 text-center">Liked Quotes:</h2>
+      <h2 className="text-base text-slate-700 my-5 mx-auto text-gray-600 text-center">Liked Quotes:</h2>
 
       {likedQuotes.length === 0 ? (
         <p>You haven't liked any quotes yet.</p>
