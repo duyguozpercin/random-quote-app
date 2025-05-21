@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import { quotes as initialQuotes } from './quotes.js';
+import { quotes as initialQuotes } from './quotes.ts';
 
 export const QuotesContext = createContext(undefined);
 export const QuotesDispatchContext = createContext(undefined);
