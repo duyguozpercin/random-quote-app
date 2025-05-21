@@ -1,8 +1,8 @@
 
 import { useState, useEffect} from 'react';
-import { ProfilePage } from './pages/ProfilePage/index.jsx';
-import { MainPage } from './pages/MainPage/index.jsx';
-import { useQuotesContext } from './QuotesContextProvider';
+import { ProfilePage } from './pages/ProfilePage';
+import { MainPage } from './pages/MainPage';
+import { useQuotesContext } from './QuotesContextProvider.tsx';
 
 
 

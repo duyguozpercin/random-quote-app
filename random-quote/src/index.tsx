@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App.js';
+import App from './App.tsx';
 import reportWebVitals from './reportWebVitals.js';
-import { QuotesContextProvider } from './QuotesContextProvider.jsx';
-import { QuoteIndexContextProvider } from './QuoteIndexContextProvider.jsx';
+import { QuotesContextProvider } from './QuotesContextProvider.tsx';
+import { QuoteIndexContextProvider } from './QuoteIndexContextProvider.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
