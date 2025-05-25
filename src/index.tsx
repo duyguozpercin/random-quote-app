@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App.tsx';
+import App from './App';
 import reportWebVitals from './reportWebVitals.js';
-import { QuotesContextProvider } from './QuotesContextProvider.tsx';
-import { QuoteIndexContextProvider } from './QuoteIndexContextProvider.tsx';
+import { QuotesContextProvider } from './QuotesContextProvider';
+import { QuoteIndexContextProvider } from './QuoteIndexContextProvider';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
+const root = ReactDOM.createRoot(rootElement);
 root.render(
+  
   <React.StrictMode>
     <QuotesContextProvider>
       <QuoteIndexContextProvider>
