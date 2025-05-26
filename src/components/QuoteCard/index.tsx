@@ -1,4 +1,4 @@
-
+import { Quote } from '../../QuotesContextProvider';
 
 export const QuoteCard = ({ quote, author, likeCount }) => {
   return (
