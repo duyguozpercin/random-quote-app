@@ -9,7 +9,7 @@ export const ProfilePage = () => {
   return (
     <main>
       <h1 className="text-lg font-bold my-5 mx-auto text-gray-600 text-center">Profile Page</h1>
-      <div className="user-info">
+      <div>
         <p className="text-base my-5 mx-auto text-gray-600 text-center">Welcome to your profile! Here's a list of the quotes you've liked so far 💖</p>
       </div>
 
