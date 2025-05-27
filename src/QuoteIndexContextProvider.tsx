@@ -1,19 +1,40 @@
-import { createContext, useState, useContext } from 'react';
-import { quotes as initialQuotes } from './quotes.js';
+import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from "react";
 
-export const QuoteIndexContext = createContext(undefined);
-export const QuoteIndexDispatchContext = createContext(undefined);
 
-export const QuoteIndexContextProvider = ({children}) => {
-  const [quoteIndex, setQuotesIndex] = useState(0);
+export const QuoteIndexContext = createContext<number | undefined>(undefined);
+
+export const QuoteIndexDispatchContext = createContext<Dispatch<SetStateAction<number>> | undefined>(undefined);
+
+
+interface QuoteIndexProviderProps {
+  children: ReactNode;
+}
+
+export const QuoteIndexContextProvider = ({ children }: QuoteIndexProviderProps) => {
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
   return (
-    <QuoteIndexContext value={quoteIndex}>
-      <QuoteIndexDispatchContext value={setQuotesIndex}>
-      {children}
-      </QuoteIndexDispatchContext>
-    </QuoteIndexContext>
+    <QuoteIndexContext.Provider value={quoteIndex}>
+      <QuoteIndexDispatchContext.Provider value={setQuoteIndex}>
+        {children}
+      </QuoteIndexDispatchContext.Provider>
+    </QuoteIndexContext.Provider>
   );
 };
 
-export const useQuoteIndexContext = ()=> useContext(QuoteIndexContext);
-export const useQuoteIndexDispatchContext = ()=> useContext(QuoteIndexDispatchContext);
+
+export const useQuoteIndexContext = (): number => {
+  const context = useContext(QuoteIndexContext);
+  if (context === undefined) {
+    throw new Error("useQuoteIndexContext must be used within a QuoteIndexContextProvider");
+  }
+  return context;
+};
+
+export const useQuoteIndexDispatchContext = (): Dispatch<SetStateAction<number>> => {
+  const context = useContext(QuoteIndexDispatchContext);
+  if (context === undefined) {
+    throw new Error("useQuoteIndexDispatchContext must be used within a QuoteIndexContextProvider");
+  }
+  return context;
+};
