@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals.js';
 import { QuotesContextProvider } from './QuotesContextProvider';
 import { QuoteIndexContextProvider } from './QuoteIndexContextProvider';
+import { AuthProvider } from './AuthContext';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   
   <React.StrictMode>
+    <AuthProvider>
     <QuotesContextProvider>
       <QuoteIndexContextProvider>
         <App />
       </QuoteIndexContextProvider>
     </QuotesContextProvider>
+    </AuthProvider>
   </React.StrictMode >
 );
 

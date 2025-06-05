@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import ProfilePage from './pages/ProfilePage';
 import MainPage from './pages/MainPage';
 import { useQuotesContext } from './QuotesContextProvider';
+import {CreateUserPage} from './pages/CreateUserPage';
 
 
 enum Page {
   home = "Home",
   profile = "Profile",
+  createUserPage = "Create User"
 };
 
 const allPages = Object.values(Page);
@@ -34,8 +36,8 @@ function App() {
 
         </ul>
       </nav>
-      {currentPage === Page.home ?
-        <MainPage /> : <ProfilePage />}
+      {currentPage === Page.home ? <MainPage /> : currentPage === Page.profile ? <ProfilePage /> : <CreateUserPage />}
+        
     </div>
   );
 }
