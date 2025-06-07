@@ -9,34 +9,28 @@ import {
   useQuoteIndexContext,
   useQuoteIndexDispatchContext,
 } from '../../QuoteIndexContextProvider';
-
 const MainPage = () => {
   const quotes = useQuotesContext();
   const dispatch = useQuotesDispatchContext();
   const currentIndex = useQuoteIndexContext();
   const dispatchQuoteIndex = useQuoteIndexDispatchContext();
-
   function handleNextQuoteClick() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     dispatchQuoteIndex(randomIndex);
   }
-
   function handleLikeClick() {
     dispatch({
       type: QuotesActionType.LIKE_QUOTE,
       payload: { index: currentIndex },
     });
   }
-
   function handleDislikeClick() {
     dispatch({
       type: QuotesActionType.DISLIKE_QUOTE,
       payload: { index: currentIndex },
     });
   }
-
   const currentQuote = quotes[currentIndex];
-
   return (
     <main>
       {currentQuote && (
@@ -54,5 +48,4 @@ const MainPage = () => {
     </main>
   );
 };
-
 export default MainPage;

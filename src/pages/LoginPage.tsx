@@ -1,23 +1,35 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import { Button } from '../components/Button';
 
-export const LoginPage = () => {
+type LoginPageProps = {
+  onLoginSuccess: () => void;
+};
+
+export const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string | null>(null);
   const authContext = useContext(AuthContext);
 
-  function handleSubmit() {
+  useEffect(() => {
+    // Inputları sıfırla
+    setEmail('');
+    setPassword('');
+    setMessage(null);
+  }, [authContext?.user]);
+
+  function handleLogin() {
     if (authContext && email && password) {
       authContext
         .logIn(email, password)
         .then(() => {
-          setMessage('Logged in successfully.');
+          setMessage('Login successful.');
+          onLoginSuccess(); // ← burası MainPage'e geçişi sağlıyor
         })
         .catch((error) => {
-          console.error(error);
-          setMessage('Error occurred while logging in.');
+          console.log(error);
+          setMessage('Login failed. Check credentials.');
         });
     }
   }
@@ -25,7 +37,7 @@ export const LoginPage = () => {
   return (
     <main className="max-w-md mx-auto p-8 mt-10 border border-gray-300 rounded-lg shadow-lg bg-white">
       <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
-        Log In
+        Login
       </h1>
 
       <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
@@ -56,17 +68,13 @@ export const LoginPage = () => {
         </div>
 
         {message && (
-          <p
-            className={`text-center text-sm font-medium ${
-              message.includes('success') ? 'text-green-600' : 'text-red-600'
-            }`}
-          >
+          <p className="text-center text-sm text-red-600 font-medium">
             {message}
           </p>
         )}
 
         <div className="flex justify-center">
-          <Button label="Log In" handleOnclick={handleSubmit} />
+          <Button label="Log In" handleOnclick={handleLogin} />
         </div>
       </form>
     </main>
