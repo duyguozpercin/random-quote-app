@@ -1,10 +1,10 @@
 import { useQuotesContext } from '../../QuotesContextProvider';
 import { QuoteCard } from '../../components/QuoteCard';
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   const quotes = useQuotesContext();
 
-  const likedQuotes = quotes.filter((quote) => quote.likeCount > 0);
+  const likedQuotes = (quotes ?? []).filter((quote) => quote.likeCount > 0);
 
   return (
     <main>
@@ -30,3 +30,5 @@ export const ProfilePage = () => {
     </main>
   );
 };
+
+export default ProfilePage;
