@@ -29,11 +29,7 @@ function App() {
       case Page.home:
         return <MainPage />;
       case Page.profile:
-        return authContext?.user ? (
-          <ProfilePage />
-        ) : (
-          <p className="text-center mt-10 text-red-600 text-lg">Please log in to view your profile.</p>
-        );
+        return <ProfilePage />;
       case Page.createUserPage:
         return (
           <CreateUserPage key={authContext?.user ? 'auth-user' : 'auth-guest'} />

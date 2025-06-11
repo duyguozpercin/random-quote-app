@@ -1,23 +1,25 @@
 import { useQuotesContext } from '../../QuotesContextProvider';
 import { QuoteCard } from '../../components/QuoteCard';
+import { useAuthContext } from '../../AuthContext';
 
 const ProfilePage = () => {
   const quotes = useQuotesContext();
+  const authContext = useAuthContext();
 
   const likedQuotes = quotes.filter((quote) => quote.likeCount > 0);
 
   return (
-    <main>
-      <h1 className="text-lg font-bold my-5 mx-auto text-gray-600 text-center">
-        Profile Page
-      </h1>
-      <div className="user-info">
-        <p className="text-base my-5 mx-auto text-gray-600 text-center">
-          Welcome to your profile! Here's a list of the quotes you've liked so far 💖
-        </p>
-      </div>
+    <main className="max-w-3xl mx-auto p-6 mt-10 border border-gray-200 rounded-lg shadow bg-white">
+      <h1 className="text-2xl font-bold text-center mb-4 text-gray-800">Profile Page</h1>
 
-      <h2 className="text-base text-slate-700 my-5 mx-auto text-gray-600 text-center">
+      {authContext?.user && (
+        <p className="text-center text-green-700 mb-6">
+          Welcome, <span className="font-semibold">{authContext.user.email}</span> 🎉
+        </p>
+      )}
+
+
+      <h2 className="text-lg font-semibold text-slate-700 text-center mb-4">
         Liked Quotes:
       </h2>
 
