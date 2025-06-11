@@ -12,12 +12,14 @@ export interface Quote {
   quote: string;
   author: string;
   likeCount: number;
+  userId: string; // ✅ quote'u kimin eklediği
 }
 
 export enum QuotesActionType {
   SET_QUOTES = "SET_QUOTES",
   LIKE_QUOTE = "LIKE_QUOTE",
-  DISLIKE_QUOTE = "DISLIKE_QUOTE"
+  DISLIKE_QUOTE = "DISLIKE_QUOTE",
+  ADD_QUOTE = 'ADD_QUOTE',
 }
 
 type SetQuotesAction = {
@@ -32,7 +34,16 @@ type LikeDislikeQuoteAction = {
   };
 };
 
-type QuotesAction = SetQuotesAction | LikeDislikeQuoteAction;
+type AddQuoteAction = {
+  type: QuotesActionType.ADD_QUOTE;
+  payload: {
+    quote: string;
+    author: string;
+    userId: string;
+  };
+};
+
+type QuotesAction = SetQuotesAction | LikeDislikeQuoteAction | AddQuoteAction;
 
 const quotesReducer = (state: Quote[], action: QuotesAction): Quote[] => {
   switch (action.type) {
@@ -57,6 +68,17 @@ const quotesReducer = (state: Quote[], action: QuotesAction): Quote[] => {
         }
         return quote;
       });
+
+    case QuotesActionType.ADD_QUOTE:
+      return [
+        ...state,
+        {
+          quote: action.payload.quote,
+          author: action.payload.author,
+          likeCount: 0,
+          userId: action.payload.userId,
+        },
+      ];
 
     default:
       console.error("Unsupported action type", action);

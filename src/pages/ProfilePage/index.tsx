@@ -1,40 +1,88 @@
+import { useState, useContext } from 'react';
 import { useQuotesContext } from '../../QuotesContextProvider';
 import { QuoteCard } from '../../components/QuoteCard';
-import { useAuthContext } from '../../AuthContext';
+import { AddQuoteForm } from '../../pages/AddQuoteForm';
+import { AuthContext } from '../../AuthContext';
+import { Button } from '../../components/Button';
 
 const ProfilePage = () => {
   const quotes = useQuotesContext();
-  const authContext = useAuthContext();
+  const authContext = useContext(AuthContext);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [showLikedQuotes, setShowLikedQuotes] = useState(true);
 
   const likedQuotes = quotes.filter((quote) => quote.likeCount > 0);
+  const myQuotes = quotes.filter((quote) => quote.userId === authContext?.user?.uid);
 
   return (
-    <main className="max-w-3xl mx-auto p-6 mt-10 border border-gray-200 rounded-lg shadow bg-white">
-      <h1 className="text-2xl font-bold text-center mb-4 text-gray-800">Profile Page</h1>
+    <main className="max-w-2xl mx-auto p-4 relative pb-20">
+      <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Profile Page</h1>
 
       {authContext?.user && (
-        <p className="text-center text-green-700 mb-6">
-          Welcome, <span className="font-semibold">{authContext.user.email}</span> 🎉
-        </p>
+        <div className="flex justify-center space-x-2 mb-6">
+          <button
+            className={`py-2 px-4 rounded-lg text-base font-medium transition ${
+              showLikedQuotes
+                ? 'bg-pink-400 text-white'
+                : 'bg-white border border-pink-400 text-pink-400'
+            }`}
+            onClick={() => setShowLikedQuotes(true)}
+          >
+            ❤️ Liked
+          </button>
+          <button
+            className={`py-2 px-4 rounded-lg text-base font-medium transition ${
+              !showLikedQuotes
+                ? 'bg-pink-400 text-white'
+                : 'bg-white border border-pink-400 text-pink-400'
+            }`}
+            onClick={() => setShowLikedQuotes(false)}
+          >
+            ✍️ Yours
+          </button>
+        </div>
       )}
 
+      {authContext?.user && (
+        <div className="text-center mb-6">
+          <Button
+            label={showAddForm ? 'Close' : '+ Add New Quote'}
+            handleOnclick={() => setShowAddForm((prev) => !prev)}
+          />
+        </div>
+      )}
 
-      <h2 className="text-lg font-semibold text-slate-700 text-center mb-4">
-        Liked Quotes:
+      {showAddForm && (
+        <div className="mb-6">
+          <AddQuoteForm />
+        </div>
+      )}
+
+      <div className="user-info text-center mb-5">
+        {authContext?.user ? (
+          <p className="text-gray-700 text-base">
+            Welcome! You can add quotes and see the ones you've liked or written. 📝
+          </p>
+        ) : (
+          <p className="text-gray-500 text-base">
+            You're not logged in, but you can still view liked quotes.
+          </p>
+        )}
+      </div>
+
+      <h2 className="text-lg font-semibold mb-3 text-gray-700 text-center">
+        {showLikedQuotes ? '❤️ Liked Quotes:' : '✍️ Your Quotes:'}
       </h2>
 
-      {likedQuotes.length === 0 ? (
-        <p className="text-center text-gray-500">You haven't liked any quotes yet.</p>
-      ) : (
-        likedQuotes.map((quote, index) => (
-          <QuoteCard
-            key={index}
-            quote={quote.quote}
-            author={quote.author}
-            likeCount={quote.likeCount}
-          />
-        ))
-      )}
+      {(showLikedQuotes ? likedQuotes : myQuotes).map((quote, index) => (
+        <QuoteCard
+          key={index}
+          quote={quote.quote}
+          author={quote.author}
+          likeCount={showLikedQuotes ? quote.likeCount : undefined}
+          showLikes={showLikedQuotes}
+        />
+      ))}
     </main>
   );
 };
