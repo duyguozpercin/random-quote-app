@@ -37,6 +37,7 @@ const MainPage = () => {
         <QuoteCard
           quote={currentQuote.quote}
           author={currentQuote.author}
+          userName={currentQuote.userName}
           likeCount={currentQuote.likeCount}
         />
       )}

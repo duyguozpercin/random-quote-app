@@ -46,7 +46,7 @@ const ProfilePage = () => {
       {authContext?.user && (
         <div className="text-center mb-6">
           <Button
-            label={showAddForm ? 'Close' : '+ Add New Quote'}
+            label={showAddForm ? 'Close' : 'Add New Quote'}
             handleOnclick={() => setShowAddForm((prev) => !prev)}
           />
         </div>
@@ -79,6 +79,7 @@ const ProfilePage = () => {
           key={index}
           quote={quote.quote}
           author={quote.author}
+          userName={quote.userName}
           likeCount={showLikedQuotes ? quote.likeCount : undefined}
           showLikes={showLikedQuotes}
         />

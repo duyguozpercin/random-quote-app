@@ -13,6 +13,7 @@ export interface Quote {
   author: string;
   likeCount: number;
   userId: string; // ✅ quote'u kimin eklediği
+  userName: string;
 }
 
 export enum QuotesActionType {
@@ -40,6 +41,7 @@ type AddQuoteAction = {
     quote: string;
     author: string;
     userId: string;
+    userName: string;
   };
 };
 
@@ -69,16 +71,18 @@ const quotesReducer = (state: Quote[], action: QuotesAction): Quote[] => {
         return quote;
       });
 
-    case QuotesActionType.ADD_QUOTE:
-      return [
-        ...state,
-        {
-          quote: action.payload.quote,
-          author: action.payload.author,
-          likeCount: 0,
-          userId: action.payload.userId,
-        },
-      ];
+      case QuotesActionType.ADD_QUOTE:
+        return [
+          ...state,
+          {
+            quote: action.payload.quote,
+            author: action.payload.author,
+            likeCount: 0,
+            userId: action.payload.userId,
+            userName: action.payload.userName, // ✅ burada da ekledik
+          },
+        ];
+      
 
     default:
       console.error("Unsupported action type", action);

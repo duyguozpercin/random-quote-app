@@ -24,13 +24,16 @@ export const AddQuoteForm = () => {
         payload: {
           quote,
           author,
-          userId: authContext.user.uid
+          userId: authContext.user.uid,
+          userName: authContext.user.displayName ?? authContext.user.email ?? "Unknown"
+
         }
       });
       setQuote("");
       setAuthor("");
     }
   };
+
 
   return (
     <form
