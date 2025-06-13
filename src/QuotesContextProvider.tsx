@@ -12,7 +12,7 @@ export interface Quote {
   quote: string;
   author: string;
   likeCount: number;
-  userId: string; // ✅ quote'u kimin eklediği
+  userId: string;
   userName: string;
 }
 
@@ -79,7 +79,7 @@ const quotesReducer = (state: Quote[], action: QuotesAction): Quote[] => {
             author: action.payload.author,
             likeCount: 0,
             userId: action.payload.userId,
-            userName: action.payload.userName, // ✅ burada da ekledik
+            userName: action.payload.userName,
           },
         ];
       

@@ -13,7 +13,7 @@ export const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
-    // Inputları sıfırla
+    
     setEmail('');
     setPassword('');
     setMessage(null);
@@ -25,7 +25,7 @@ export const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
         .logIn(email, password)
         .then(() => {
           setMessage('Login successful.');
-          onLoginSuccess(); // ← burası MainPage'e geçişi sağlıyor
+          onLoginSuccess();
         })
         .catch((error) => {
           console.log(error);

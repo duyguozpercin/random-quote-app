@@ -40,7 +40,7 @@ export const CreateUserPage = () => {
       try {
         const user = await authContext.createAccount(email, password, username);
 
-        // ✅ Kullanıcının profilini güncelle (displayName)
+      
         if (user) {
           await updateProfile(user, {
             displayName: username,
