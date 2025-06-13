@@ -1,16 +1,19 @@
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import { Button } from '../components/Button';
+import { updateProfile } from 'firebase/auth'; // ✅ Firebase'den import edildi
 
 export const CreateUserPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [message, setMessage] = useState<string | null>(null);
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
     setEmail('');
     setPassword('');
+    setUsername('');
     setMessage(null);
   }, []);
 
@@ -22,24 +25,36 @@ export const CreateUserPage = () => {
     );
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (password.length < 6) {
       setMessage('Password should be at least 6 characters long.');
       return;
     }
 
+    if (!username.trim()) {
+      setMessage('Please enter a username.');
+      return;
+    }
+
     if (authContext && email && password) {
-      authContext
-        .createAccount(email, password)
-        .then(() => {
-          setMessage('Account created successfully.');
-          setEmail('');
-          setPassword('');
-        })
-        .catch((error) => {
-          console.error(error);
-          setMessage('Error occurred when creating an account.');
-        });
+      try {
+        const user = await authContext.createAccount(email, password, username);
+
+        // ✅ Kullanıcının profilini güncelle (displayName)
+        if (user) {
+          await updateProfile(user, {
+            displayName: username,
+          });
+        }
+
+        setMessage('Account created successfully.');
+        setEmail('');
+        setPassword('');
+        setUsername('');
+      } catch (error) {
+        console.error(error);
+        setMessage('Error occurred when creating an account.');
+      }
     }
   }
 
@@ -60,6 +75,7 @@ export const CreateUserPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
           />
         </div>
 
@@ -75,6 +91,23 @@ export const CreateUserPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="username" className="block mb-1 font-medium text-gray-700">
+            Username
+          </label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
           />
         </div>
 
