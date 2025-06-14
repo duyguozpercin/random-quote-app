@@ -72,7 +72,7 @@ export const AddQuoteForm = () => {
 
       <button
         type="submit"
-        className="w-full bg-yellow-300 font-semibold py-2.5w-full text-white font-semibold py-2.5 rounded-md hover:bg-yellow-400 transition duration-200rounded-md hover:text-yellow-600 transition duration-200"
+        className="w-full bg-blue-950 font-semibold py-2.5w-full text-white font-semibold py-2.5 rounded-md hover:bg-blue-900 transition duration-200rounded-md hover:bg-blue-900 transition duration-200"
       >
         Submit Quote
       </button>

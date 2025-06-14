@@ -4,15 +4,28 @@ import { QuoteCard } from '../../components/QuoteCard';
 import { AddQuoteForm } from '../../pages/AddQuoteForm';
 import { AuthContext } from '../../AuthContext';
 import { Button } from '../../components/Button';
+import { useQuotesDispatchContext, QuotesActionType } from '../../QuotesContextProvider';
+
 
 const ProfilePage = () => {
   const quotes = useQuotesContext();
   const authContext = useContext(AuthContext);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showLikedQuotes, setShowLikedQuotes] = useState(true);
+  const dispatch = useQuotesDispatchContext();
+
 
   const likedQuotes = quotes.filter((quote) => quote.likeCount > 0);
   const myQuotes = quotes.filter((quote) => quote.userId === authContext?.user?.uid);
+
+  function handleRemove(id: string) {
+    dispatch({
+      type: QuotesActionType.REMOVE_QUOTE,
+      payload: { id }
+    });
+  }
+  
+
 
   return (
     <main className="max-w-2xl mx-auto p-4 relative pb-20">
@@ -21,21 +34,20 @@ const ProfilePage = () => {
       {authContext?.user && (
         <div className="flex justify-center space-x-2 mb-6">
           <button
-            className={`py-2 px-4 rounded-lg text-base font-medium transition ${
-              showLikedQuotes
-                ? 'bg-pink-400 text-white'
-                : 'bg-white border border-pink-400 text-pink-400'
-            }`}
+            className={`py-2 px-4 rounded-lg text-base font-medium transition ${showLikedQuotes
+            
+                ? 'bg-blue-900 text-white'
+                : 'bg-white border-pink-400 bg-blue-900 '
+              }`}
             onClick={() => setShowLikedQuotes(true)}
           >
             ❤️ Liked
           </button>
           <button
-            className={`py-2 px-4 rounded-lg text-base font-medium transition ${
-              !showLikedQuotes
-                ? 'bg-pink-400 text-white'
-                : 'bg-white border border-pink-400 text-pink-400'
-            }`}
+            className={`py-2 px-4 rounded-lg text-base font-medium transition ${!showLikedQuotes
+                ? 'bg-blue-900 text-white'
+                : 'bg-white bg-blue-900'
+              }`}
             onClick={() => setShowLikedQuotes(false)}
           >
             ✍️ Yours
@@ -82,6 +94,8 @@ const ProfilePage = () => {
           userName={quote.userName}
           likeCount={showLikedQuotes ? quote.likeCount : undefined}
           showLikes={showLikedQuotes}
+          showRemove={true}
+          handleRemove={() => handleRemove(quote.id)}
         />
       ))}
     </main>
