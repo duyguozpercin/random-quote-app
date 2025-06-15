@@ -28,6 +28,8 @@ export const QuoteCard = ({
         <p className="mt-2 text-xs text-gray-400">Added by: {userName}</p>
       )}
 
+
+
       {showLikes && typeof likeCount === 'number' && (
         <p className="mt-4 text-fuchsia-400 text-xs">💖 Likes: {likeCount}</p>
       )}

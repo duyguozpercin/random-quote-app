@@ -40,10 +40,10 @@ export const AddQuoteForm = () => {
       onSubmit={handleSubmit}
       className="bg-white rounded-xl shadow-md p-6 space-y-5 max-w-lg mx-auto border border-gray-100"
     >
-      <h2 className="text-2xl font-bold text-center text-yellow-500">Add a New Quote</h2>
+      <h2 className="text-2xl font-bold text-center text-sky-900">Add a New Quote</h2>
 
       <div className="flex flex-col">
-        <label className="text-sm text-yellow-500 mb-1 font-medium" htmlFor="quote">
+        <label className="text-sm text-sky-800 mb-1 font-medium" htmlFor="quote">
           Quote
         </label>
         <textarea
@@ -57,7 +57,7 @@ export const AddQuoteForm = () => {
       </div>
 
       <div className="flex flex-col">
-        <label className="text-sm text-yellow-500 mb-1 font-medium" htmlFor="author">
+        <label className="text-sm text-sky-800 mb-1 font-medium" htmlFor="author">
           Author
         </label>
         <input

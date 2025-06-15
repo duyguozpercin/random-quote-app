@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import { Button } from '../components/Button';
-import { updateProfile } from 'firebase/auth'; // ✅ Firebase'den import edildi
+import { updateProfile } from 'firebase/auth';
 
 export const CreateUserPage = () => {
   const [email, setEmail] = useState('');

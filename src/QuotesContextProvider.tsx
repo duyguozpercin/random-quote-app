@@ -12,8 +12,8 @@ export interface Quote {
   quote: string;
   author: string;
   likeCount: number;
-  userId: string;
-  userName: string;
+  userId?: string;
+  userName?: string;
 }
 export enum QuotesActionType {
   SET_QUOTES = "SET_QUOTES",
@@ -29,7 +29,7 @@ type SetQuotesAction = {
 type LikeDislikeQuoteAction = {
   type: QuotesActionType.LIKE_QUOTE | QuotesActionType.DISLIKE_QUOTE;
   payload: {
-    id: string; // :repeat: index yerine id kullanılıyor
+    id: string; 
   };
 };
 type AddQuoteAction = {
